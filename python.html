@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python - World Countries Explorer</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #e3f2fd 0%, #ffffff 100%);
+            color: #1a1a1a;
+            line-height: 1.6;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px 80px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 20px rgba(0, 153, 255, 0.1);
+        }
+
+        .logo {
+            font-size: 1.5em;
+            font-weight: 700;
+            color: #1a1a1a;
+            cursor: pointer;
+        }
+
+        .logo span {
+            color: #00D9FF;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #0099FF 0%, #00D9FF 100%);
+            color: #ffffff;
+            padding: 12px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            transform: translateX(-5px);
+            box-shadow: 0 5px 20px rgba(0, 217, 255, 0.4);
+        }
+
+        .page-header {
+            padding: 80px 80px 60px;
+            text-align: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #ffffff;
+        }
+
+        .page-icon {
+            font-size: 5em;
+            margin-bottom: 20px;
+        }
+
+        .page-header h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+
+        .page-header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .content-section {
+            padding: 60px 80px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .app-container {
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 153, 255, 0.15);
+            overflow: hidden;
+            margin-bottom: 40px;
+        }
+
+        .app-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .app-header h2 {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .app-body {
+            padding: 40px;
+            text-align: center;
+        }
+
+        .colab-link {
+            display: inline-block;
+            background: linear-gradient(135deg, #f9ab00 0%, #f57c00 100%);
+            color: white;
+            padding: 20px 40px;
+            border-radius: 15px;
+            text-decoration: none;
+            font-size: 1.2em;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(249, 171, 0, 0.3);
+        }
+
+        .colab-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(249, 171, 0, 0.4);
+        }
+
+        .preview-note {
+            margin-top: 20px;
+            padding: 15px;
+            background: #fff3cd;
+            border-radius: 10px;
+            color: #856404;
+        }
+
+        .info-box {
+            background: #f0f7ff;
+            border-left: 4px solid #0099FF;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 10px;
+        }
+
+        .info-box h3 {
+            color: #0099FF;
+            margin-bottom: 10px;
+        }
+
+        .info-box ul {
+            margin-left: 20px;
+            color: #666;
+        }
+
+        .info-box li {
+            margin-bottom: 8px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 153, 255, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+
+        .feature-card h3 {
+            color: #1a1a1a;
+            margin-bottom: 10px;
+        }
+
+        .feature-card p {
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            background: #0f0f0f;
+            color: #666;
+        }
+
+        @media (max-width: 968px) {
+            .navbar {
+                padding: 20px 30px;
+            }
+
+            .page-header {
+                padding: 60px 30px 40px;
+            }
+
+            .page-header h1 {
+                font-size: 2.5em;
+            }
+
+            .content-section {
+                padding: 40px 30px;
+            }
+
+            .app-body {
+                padding: 20px;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        /* ============================================
+   TAMBAHKAN CSS INI KE FILE HTML KAMU
+   Di dalam tag <style> atau file CSS terpisah
+   ============================================ */
+
+/* Reset dasar biar ga overflow */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    overflow-x: hidden;
+    max-width: 100vw;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* MOBILE FIRST - Styling untuk HP */
+@media (max-width: 767px) {
+    /* Navigation */
+    nav {
+        padding: 10px 15px !important;
+    }
+    
+    nav .container {
+        flex-direction: column !important;
+        gap: 10px !important;
+    }
+    
+    nav ul {
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        gap: 8px !important;
+        width: 100% !important;
+    }
+    
+    nav ul li a {
+        padding: 6px 12px !important;
+        font-size: 0.85rem !important;
+    }
+    
+    /* Hero Section */
+    #home {
+        padding: 80px 15px 40px !important;
+        min-height: auto !important;
+    }
+    
+    .hero-content {
+        flex-direction: column !important;
+        gap: 20px !important;
+    }
+    
+    .hero-image {
+        width: 100% !important;
+        max-width: 250px !important;
+        margin: 0 auto !important;
+    }
+    
+    .hero-text {
+        text-align: center !important;
+        width: 100% !important;
+    }
+    
+    .hero-text h3 {
+        font-size: 0.9rem !important;
+    }
+    
+    .hero-text h1 {
+        font-size: 1.8rem !important;
+        line-height: 1.2 !important;
+    }
+    
+    .hero-text h2 {
+        font-size: 1rem !important;
+    }
+    
+    .social-links {
+        justify-content: center !important;
+        flex-wrap: wrap !important;
+        gap: 10px !important;
+    }
+    
+    .social-links a {
+        padding: 8px 15px !important;
+        font-size: 0.85rem !important;
+    }
+    
+    .cta-button {
+        padding: 10px 25px !important;
+        font-size: 0.9rem !important;
+    }
+    
+    /* About Section */
+    #about {
+        padding: 50px 15px !important;
+    }
+    
+    #about h2 {
+        font-size: 1.8rem !important;
+        margin-bottom: 30px !important;
+    }
+    
+    .about-content {
+        flex-direction: column !important;
+        gap: 20px !important;
+    }
+    
+    .about-image {
+        width: 100% !important;
+        max-width: 280px !important;
+        margin: 0 auto !important;
+    }
+    
+    .about-text {
+        text-align: center !important;
+    }
+    
+    .about-text h4 {
+        font-size: 1.2rem !important;
+    }
+    
+    .about-text p {
+        font-size: 0.95rem !important;
+        text-align: justify !important;
+        padding: 0 10px !important;
+    }
+    
+    /* Subjects Section */
+    #subjects {
+        padding: 50px 15px !important;
+    }
+    
+    #subjects h2 {
+        font-size: 1.8rem !important;
+        margin-bottom: 30px !important;
+    }
+    
+    .subjects-grid {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+    }
+    
+    .subject-card {
+        padding: 20px !important;
+    }
+    
+    .subject-icon {
+        font-size: 2.5rem !important;
+    }
+    
+    .subject-card h3 {
+        font-size: 1.3rem !important;
+    }
+    
+    .subject-card p {
+        font-size: 0.9rem !important;
+    }
+    
+    .subject-stats {
+        flex-wrap: wrap !important;
+        gap: 10px !important;
+    }
+    
+    .stat {
+        font-size: 0.85rem !important;
+    }
+    
+    .subject-link {
+        padding: 8px 16px !important;
+        font-size: 0.85rem !important;
+    }
+    
+    /* Contact Section */
+    #contact {
+        padding: 50px 15px !important;
+    }
+    
+    #contact h3 {
+        font-size: 1.5rem !important;
+    }
+    
+    #contact p {
+        font-size: 0.95rem !important;
+        padding: 0 15px !important;
+    }
+    
+    .contact-links {
+        flex-wrap: wrap !important;
+        gap: 10px !important;
+    }
+    
+    .contact-links a {
+        padding: 10px 20px !important;
+        font-size: 0.9rem !important;
+    }
+    
+    /* Footer */
+    footer {
+        padding: 20px 15px !important;
+        font-size: 0.85rem !important;
+    }
+}
+
+/* TABLET - 768px sampai 1023px */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .hero-text h1 {
+        font-size: 2.5rem !important;
+    }
+    
+    .hero-image {
+        max-width: 300px !important;
+    }
+    
+    .subjects-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 20px !important;
+    }
+    
+    .about-content {
+        flex-direction: row !important;
+        align-items: center !important;
+    }
+    
+    .about-text {
+        text-align: left !important;
+    }
+    
+    .about-text p {
+        text-align: left !important;
+    }
+}
+
+/* DESKTOP - 1024px ke atas */
+@media (min-width: 1024px) {
+    .hero-content {
+        flex-direction: row !important;
+        align-items: center !important;
+    }
+    
+    .hero-text {
+        text-align: left !important;
+    }
+    
+    .social-links {
+        justify-content: flex-start !important;
+    }
+    
+    .subjects-grid {
+        grid-template-columns: repeat(3, 1fr) !important;
+    }
+}
+
+/* Fix umum buat semua ukuran layar */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* Prevent horizontal scroll di semua device */
+body, html {
+    width: 100%;
+    overflow-x: hidden;
+}
+
+section {
+    width: 100%;
+    overflow-x: hidden;
+}
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo" onclick="window.location.href='index.html'">Porto<span>folio.</span></div>
+        <a href="it.html" class="back-btn">← Back to IT</a>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="page-icon">🐍</div>
+        <h1>World Countries Explorer</h1>
+        <p>Program Python interaktif untuk eksplorasi data negara-negara di dunia</p>
+    </section>
+
+    <!-- Main Content -->
+    <section class="content-section">
+        
+        <!-- Info Box -->
+        <div class="info-box">
+            <h3>📖 Tentang Program Ini</h3>
+            <p>World Countries Data Explorer adalah program Python yang mengambil data negara dari REST Countries API dan menyajikannya dalam format interaktif.</p>
+            <ul>
+                <li><strong>Data Real-time:</strong> Mengambil data langsung dari API</li>
+                <li><strong>250+ Negara:</strong> Database lengkap negara di seluruh dunia</li>
+                <li><strong>Multiple Features:</strong> Search, filter, sort, compare, dan quiz</li>
+                <li><strong>Visualisasi Data:</strong> Tabel dan statistik yang mudah dipahami</li>
+            </ul>
+        </div>
+
+        <!-- Features Grid -->
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🔍</div>
+                <h3>Search Countries</h3>
+                <p>Cari negara berdasarkan nama dengan cepat</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🌏</div>
+                <h3>ASEAN Filter</h3>
+                <p>Filter khusus negara-negara ASEAN</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3>Sort & Statistics</h3>
+                <p>Urutkan berdasarkan populasi atau area</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">⚔️</div>
+                <h3>Compare</h3>
+                <p>Bandingkan 2 negara secara detail</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🎮</div>
+                <h3>Geography Quiz</h3>
+                <p>Tes pengetahuan ibu kota negara</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📈</div>
+                <h3>Global Stats</h3>
+                <p>Statistik global dan per region</p>
+            </div>
+        </div>
+
+        <!-- App Container -->
+        <div class="app-container">
+            <div class="app-header">
+                <h2>🌍 Try It Now!</h2>
+                <p>Klik tombol di bawah untuk membuka program di Google Colab</p>
+            </div>
+            <div class="app-body">
+                <a href="https://colab.research.google.com/drive/1oOlYuYyo7FAeuzTiG8bMgBKs9Yz-xVtd?usp=sharing" 
+                   target="_blank" 
+                   class="colab-link">
+                    🚀 Open in Google Colab
+                </a>
+                <div class="preview-note">
+                    <strong>💡 Note:</strong> Google Colab akan terbuka di tab baru. Pastikan Anda sudah login ke akun Google.
+                </div>
+            </div>
+        </div>
+
+        <!-- Alternative Note -->
+        <div class="info-box">
+            <h3>💡 Cara Menggunakan</h3>
+            <ul>
+                <li>Klik tombol <strong>"Open in Google Colab"</strong> di atas</li>
+                <li>Klik <strong>"Connect"</strong> di kanan atas untuk menjalankan program</li>
+                <li>Klik tombol <strong>▶ Run</strong> atau tekan <strong>Shift+Enter</strong></li>
+                <li>Pilih menu dengan memasukkan nomor (0-9)</li>
+                <li>Ikuti instruksi yang muncul di layar</li>
+                <li>Program akan mengambil data dari API secara otomatis</li>
+            </ul>
+        </div>
+
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>Copyright by Akid1710 © 2025</p>
+    </footer>
+</body>
+</html>

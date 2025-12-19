@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kisah Kedua Orang Tua - Detail Project</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #e3f2fd 0%, #ffffff 100%);
+            color: #1a1a1a;
+            line-height: 1.6;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px 80px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 20px rgba(0, 153, 255, 0.1);
+        }
+
+        .logo {
+            font-size: 1.5em;
+            font-weight: 700;
+            color: #1a1a1a;
+            cursor: pointer;
+        }
+
+        .logo span {
+            color: #00D9FF;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #0099FF 0%, #00D9FF 100%);
+            color: #ffffff;
+            padding: 12px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            transform: translateX(-5px);
+            box-shadow: 0 5px 20px rgba(0, 217, 255, 0.4);
+        }
+
+        .page-header {
+            padding: 80px 80px 60px;
+            text-align: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #ffffff;
+        }
+
+        .page-icon {
+            font-size: 5em;
+            margin-bottom: 20px;
+        }
+
+        .page-header h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+
+        .page-header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .content-section {
+            padding: 60px 80px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .video-container {
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 153, 255, 0.15);
+            overflow: hidden;
+            margin-bottom: 40px;
+        }
+
+        .video-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .video-header h2 {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .video-body {
+            padding: 40px;
+            text-align: center;
+        }
+
+        .instagram-link {
+            display: inline-block;
+            background: linear-gradient(135deg, #E1306C 0%, #C13584 100%);
+            color: white;
+            padding: 20px 40px;
+            border-radius: 15px;
+            text-decoration: none;
+            font-size: 1.2em;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(225, 48, 108, 0.3);
+        }
+
+        .instagram-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(225, 48, 108, 0.4);
+        }
+
+        .info-box {
+            background: #f0f7ff;
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 10px;
+        }
+
+        .info-box h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 1.5em;
+        }
+
+        .info-box ul {
+            margin-left: 20px;
+            color: #666;
+        }
+
+        .info-box li {
+            margin-bottom: 8px;
+        }
+
+        .info-box p {
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 153, 255, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+
+        .feature-card h3 {
+            color: #1a1a1a;
+            margin-bottom: 10px;
+        }
+
+        .feature-card p {
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .learning-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 60px 40px;
+            border-radius: 20px;
+            color: white;
+            margin: 40px 0;
+        }
+
+        .learning-section h3 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .learning-list {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .learning-item {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: start;
+            gap: 15px;
+        }
+
+        .learning-item-icon {
+            font-size: 1.5em;
+            flex-shrink: 0;
+        }
+
+        .learning-item-content h4 {
+            margin-bottom: 5px;
+            font-size: 1.1em;
+        }
+
+        .learning-item-content p {
+            opacity: 0.9;
+            font-size: 0.95em;
+        }
+
+        .quote-section {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            padding: 40px;
+            border-radius: 20px;
+            border-left: 4px solid #667eea;
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        .quote-text {
+            font-size: 1.5em;
+            font-style: italic;
+            color: #667eea;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .quote-author {
+            color: #666;
+            font-size: 1em;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            background: #0f0f0f;
+            color: #666;
+        }
+
+        @media (max-width: 968px) {
+            .navbar {
+                padding: 20px 30px;
+            }
+
+            .page-header {
+                padding: 60px 30px 40px;
+            }
+
+            .page-header h1 {
+                font-size: 2.5em;
+            }
+
+            .content-section {
+                padding: 40px 30px;
+            }
+
+            .video-body {
+                padding: 20px;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .learning-section {
+                padding: 40px 20px;
+            }
+
+            .quote-text {
+                font-size: 1.2em;
+            }
+        }
+        
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo" onclick="window.location.href='index.html'">Porto<span>folio.</span></div>
+        <a href="arabic2.html" class="back-btn">← Back to Arabic</a>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="page-icon">✍️</div>
+        <h1>Kisah Kedua Orang Tua</h1>
+        <p>Penuturan cerita tentang perjuangan dan pengorbanan orang tua</p>
+    </section>
+
+    <!-- Main Content -->
+    <section class="content-section">
+        
+        <!-- Quote Section -->
+        <div class="quote-section">
+            <div class="quote-text">
+                "الْجَنَّةُ تَحْتَ أَقْدَامِ الْأُمَّهَاتِ"
+            </div>
+            <div class="quote-author">
+                "Surga berada di telapak kaki ibu"<br>
+                - Hadits Nabi Muhammad SAW -
+            </div>
+        </div>
+
+        <!-- Info Box -->
+        <div class="info-box">
+            <h3>📖 Tentang Project Ini</h3>
+            <p>Qishoh (قصة) atau cerita adalah salah satu metode pembelajaran Bahasa Arab yang efektif untuk meningkatkan kemampuan bercerita dan ekspresi. Dalam project ini, saya menceritakan perjalanan hidup dan pengorbanan kedua orang tua dalam Bahasa Arab, sebuah narasi yang penuh dengan emosi dan pembelajaran hidup.</p>
+            <br>
+            <p><strong>Durasi:</strong> ~4 menit</p>
+            <p><strong>Genre:</strong> Non-fiksi / Personal Story</p>
+            <p><strong>Tema:</strong> Keluarga, Pengorbanan, Kasih Sayang</p>
+            <p><strong>Tingkat:</strong> Intermediate</p>
+        </div>
+
+        <!-- Features Grid -->
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">❤️</div>
+                <h3>Emotional Storytelling</h3>
+                <p>Menyampaikan cerita dengan emosi dan kedalaman perasaan</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🎭</div>
+                <h3>Narrative Technique</h3>
+                <p>Menggunakan teknik bercerita yang menarik pendengar</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📝</div>
+                <h3>Descriptive Language</h3>
+                <p>Penggunaan kosakata deskriptif yang kaya</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🌟</div>
+                <h3>Life Lessons</h3>
+                <p>Mengandung nilai-nilai kehidupan yang mendalam</p>
+            </div>
+        </div>
+
+        <!-- Video Container -->
+        <div class="video-container">
+            <div class="video-header">
+                <h2>🎥 Tonton Video Lengkap</h2>
+                <p>Klik tombol di bawah untuk menonton di Instagram</p>
+            </div>
+            <div class="video-body">
+                <a href="https://www.instagram.com/akid1710/reel/DRRPv_jgdJh/" 
+                   target="_blank" 
+                   class="instagram-link">
+                    📱 Watch on Instagram
+                </a>
+            </div>
+        </div>
+
+        <!-- Learning Section -->
+        <div class="learning-section">
+            <h3>✨ Yang Saya Pelajari</h3>
+            <div class="learning-list">
+                <div class="learning-item">
+                    <div class="learning-item-icon">📚</div>
+                    <div class="learning-item-content">
+                        <h4>Storytelling dalam Bahasa Arab</h4>
+                        <p>Mempelajari cara menyusun cerita dengan alur yang baik menggunakan struktur bahasa Arab: mubtada, khabar, fi'il, fa'il, dan maf'ul</p>
+                    </div>
+                </div>
+                <div class="learning-item">
+                    <div class="learning-item-icon">🎨</div>
+                    <div class="learning-item-content">
+                        <h4>Ekspresi Emosi</h4>
+                        <p>Belajar mengekspresikan perasaan dalam Bahasa Arab - kasih sayang, syukur, dan penghargaan terhadap orang tua</p>
+                    </div>
+                </div>
+                <div class="learning-item">
+                    <div class="learning-item-icon">🗣️</div>
+                    <div class="learning-item-content">
+                        <h4>Intonasi dan Penekanan</h4>
+                        <p>Melatih penggunaan intonasi yang tepat untuk menyampaikan makna dan emosi dalam cerita</p>
+                    </div>
+                </div>
+                <div class="learning-item">
+                    <div class="learning-item-icon">📖</div>
+                    <div class="learning-item-content">
+                        <h4>Kosakata Keluarga</h4>
+                        <p>Memperkaya vocabulary tentang keluarga: الأب (ayah), الأم (ibu), التضحية (pengorbanan), المحبة (kasih sayang)</p>
+                    </div>
+                </div>
+                <div class="learning-item">
+                    <div class="learning-item-icon">💎</div>
+                    <div class="learning-item-content">
+                        <h4>Nilai Berbakti kepada Orang Tua</h4>
+                        <p>Memahami dan menghayati pentingnya birrul walidain (berbakti kepada orang tua) dalam Islam</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Additional Info -->
+        <div class="info-box">
+            <h3>💡 Poin-Poin dalam Cerita</h3>
+            <ul>
+                <li><strong>Pengorbanan Tanpa Batas:</strong> Bagaimana orang tua bekerja keras tanpa mengeluh demi masa depan anak</li>
+                <li><strong>Kasih Sayang yang Tulus:</strong> Cinta orang tua yang tidak mengharapkan balasan apapun</li>
+                <li><strong>Doa dan Harapan:</strong> Harapan orang tua akan kesuksesan dan kebahagiaan anak-anaknya</li>
+                <li><strong>Pembelajaran Hidup:</strong> Nilai-nilai yang diajarkan melalui contoh dan tindakan nyata</li>
+                <li><strong>Rasa Syukur:</strong> Pentingnya menghargai dan berterima kasih atas semua yang telah diberikan</li>
+            </ul>
+        </div>
+
+        <div class="info-box">
+            <h3>🌟 Tips Membuat Qishoh yang Baik</h3>
+            <ul>
+                <li>Pilih cerita yang memiliki makna dan dapat menginspirasi pendengar</li>
+                <li>Susun alur cerita dengan jelas: pendahuluan, konflik, dan resolusi</li>
+                <li>Gunakan bahasa deskriptif untuk menggambarkan suasana dan perasaan</li>
+                <li>Latih intonasi dan ekspresi wajah agar cerita lebih hidup</li>
+                <li>Tutup dengan pesan moral atau hikmah yang dapat diambil</li>
+                <li>Praktik berulang kali untuk meningkatkan kelancaran bercerita</li>
+            </ul>
+        </div>
+
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>Copyright by Akid1710 © 2025</p>
+    </footer>
+</body>
+</html>

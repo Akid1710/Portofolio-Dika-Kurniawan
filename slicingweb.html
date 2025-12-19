@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Slicing - Cartoon Network</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #e3f2fd 0%, #ffffff 100%);
+            color: #1a1a1a;
+            line-height: 1.6;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px 80px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 20px rgba(0, 153, 255, 0.1);
+        }
+
+        .logo {
+            font-size: 1.5em;
+            font-weight: 700;
+            color: #1a1a1a;
+            cursor: pointer;
+        }
+
+        .logo span {
+            color: #00D9FF;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #0099FF 0%, #00D9FF 100%);
+            color: #ffffff;
+            padding: 12px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            transform: translateX(-5px);
+            box-shadow: 0 5px 20px rgba(0, 217, 255, 0.4);
+        }
+
+        .page-header {
+            padding: 80px 80px 60px;
+            text-align: center;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: #ffffff;
+        }
+
+        .page-icon {
+            font-size: 5em;
+            margin-bottom: 20px;
+        }
+
+        .page-header h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+
+        .page-header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .content-section {
+            padding: 60px 80px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .website-container {
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 153, 255, 0.15);
+            overflow: hidden;
+            margin-bottom: 40px;
+        }
+
+        .website-header {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .website-header h2 {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .website-body {
+            padding: 40px;
+            text-align: center;
+        }
+
+        .website-link {
+            display: inline-block;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 20px 40px;
+            border-radius: 15px;
+            text-decoration: none;
+            font-size: 1.2em;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(240, 147, 251, 0.3);
+        }
+
+        .website-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(240, 147, 251, 0.4);
+        }
+
+        .info-box {
+            background: #fff5f8;
+            border-left: 4px solid #f093fb;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 10px;
+        }
+
+        .info-box h3 {
+            color: #f093fb;
+            margin-bottom: 10px;
+            font-size: 1.5em;
+        }
+
+        .info-box ul {
+            margin-left: 20px;
+            color: #666;
+        }
+
+        .info-box li {
+            margin-bottom: 8px;
+        }
+
+        .info-box p {
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 153, 255, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+
+        .feature-card h3 {
+            color: #1a1a1a;
+            margin-bottom: 10px;
+        }
+
+        .feature-card p {
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .process-section {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            padding: 60px 40px;
+            border-radius: 20px;
+            color: white;
+            margin: 40px 0;
+        }
+
+        .process-section h3 {
+            font-size: 2em;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .process-steps {
+            max-width: 800px;
+            margin: 0 auto;
+            display: grid;
+            gap: 20px;
+        }
+
+        .process-step {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            padding: 25px;
+            border-radius: 15px;
+            display: flex;
+            align-items: start;
+            gap: 20px;
+        }
+
+        .step-number {
+            font-size: 2em;
+            font-weight: 800;
+            background: white;
+            color: #f093fb;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .step-content h4 {
+            margin-bottom: 8px;
+            font-size: 1.2em;
+        }
+
+        .step-content p {
+            opacity: 0.9;
+            font-size: 0.95em;
+        }
+
+        .learning-section {
+            background: linear-gradient(135deg, rgba(240, 147, 251, 0.1) 0%, rgba(245, 87, 108, 0.1) 100%);
+            padding: 60px 40px;
+            border-radius: 20px;
+            margin: 40px 0;
+        }
+
+        .learning-section h3 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #f093fb;
+        }
+
+        .learning-list {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .learning-item {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: start;
+            gap: 15px;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .learning-item-icon {
+            font-size: 1.5em;
+            flex-shrink: 0;
+        }
+
+        .learning-item-content h4 {
+            margin-bottom: 5px;
+            font-size: 1.1em;
+            color: #1a1a1a;
+        }
+
+        .learning-item-content p {
+            color: #666;
+            font-size: 0.95em;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            background: #0f0f0f;
+            color: #666;
+        }
+
+        @media (max-width: 968px) {
+            .navbar {
+                padding: 20px 30px;
+            }
+
+            .page-header {
+                padding: 60px 30px 40px;
+            }
+
+            .page-header h1 {
+                font-size: 2.5em;
+            }
+
+            .content-section {
+                padding: 40px 30px;
+            }
+
+            .website-body {
+                padding: 20px;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .process-section {
+                padding: 40px 20px;
+            }
+
+            .learning-section {
+                padding: 40px 20px;
+            }
+        }
+        /* ============================================
+   TAMBAHKAN CSS INI KE FILE HTML KAMU
+   Di dalam tag <style> atau file CSS terpisah
+   ============================================ */
+
+/* Reset dasar biar ga overflow */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    overflow-x: hidden;
+    max-width: 100vw;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* MOBILE FIRST - Styling untuk HP */
+@media (max-width: 767px) {
+    /* Navigation */
+    nav {
+        padding: 10px 15px !important;
+    }
+    
+    nav .container {
+        flex-direction: column !important;
+        gap: 10px !important;
+    }
+    
+    nav ul {
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        gap: 8px !important;
+        width: 100% !important;
+    }
+    
+    nav ul li a {
+        padding: 6px 12px !important;
+        font-size: 0.85rem !important;
+    }
+    
+    /* Hero Section */
+    #home {
+        padding: 80px 15px 40px !important;
+        min-height: auto !important;
+    }
+    
+    .hero-content {
+        flex-direction: column !important;
+        gap: 20px !important;
+    }
+    
+    .hero-image {
+        width: 100% !important;
+        max-width: 250px !important;
+        margin: 0 auto !important;
+    }
+    
+    .hero-text {
+        text-align: center !important;
+        width: 100% !important;
+    }
+    
+    .hero-text h3 {
+        font-size: 0.9rem !important;
+    }
+    
+    .hero-text h1 {
+        font-size: 1.8rem !important;
+        line-height: 1.2 !important;
+    }
+    
+    .hero-text h2 {
+        font-size: 1rem !important;
+    }
+    
+    .social-links {
+        justify-content: center !important;
+        flex-wrap: wrap !important;
+        gap: 10px !important;
+    }
+    
+    .social-links a {
+        padding: 8px 15px !important;
+        font-size: 0.85rem !important;
+    }
+    
+    .cta-button {
+        padding: 10px 25px !important;
+        font-size: 0.9rem !important;
+    }
+    
+    /* About Section */
+    #about {
+        padding: 50px 15px !important;
+    }
+    
+    #about h2 {
+        font-size: 1.8rem !important;
+        margin-bottom: 30px !important;
+    }
+    
+    .about-content {
+        flex-direction: column !important;
+        gap: 20px !important;
+    }
+    
+    .about-image {
+        width: 100% !important;
+        max-width: 280px !important;
+        margin: 0 auto !important;
+    }
+    
+    .about-text {
+        text-align: center !important;
+    }
+    
+    .about-text h4 {
+        font-size: 1.2rem !important;
+    }
+    
+    .about-text p {
+        font-size: 0.95rem !important;
+        text-align: justify !important;
+        padding: 0 10px !important;
+    }
+    
+    /* Subjects Section */
+    #subjects {
+        padding: 50px 15px !important;
+    }
+    
+    #subjects h2 {
+        font-size: 1.8rem !important;
+        margin-bottom: 30px !important;
+    }
+    
+    .subjects-grid {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+    }
+    
+    .subject-card {
+        padding: 20px !important;
+    }
+    
+    .subject-icon {
+        font-size: 2.5rem !important;
+    }
+    
+    .subject-card h3 {
+        font-size: 1.3rem !important;
+    }
+    
+    .subject-card p {
+        font-size: 0.9rem !important;
+    }
+    
+    .subject-stats {
+        flex-wrap: wrap !important;
+        gap: 10px !important;
+    }
+    
+    .stat {
+        font-size: 0.85rem !important;
+    }
+    
+    .subject-link {
+        padding: 8px 16px !important;
+        font-size: 0.85rem !important;
+    }
+    
+    /* Contact Section */
+    #contact {
+        padding: 50px 15px !important;
+    }
+    
+    #contact h3 {
+        font-size: 1.5rem !important;
+    }
+    
+    #contact p {
+        font-size: 0.95rem !important;
+        padding: 0 15px !important;
+    }
+    
+    .contact-links {
+        flex-wrap: wrap !important;
+        gap: 10px !important;
+    }
+    
+    .contact-links a {
+        padding: 10px 20px !important;
+        font-size: 0.9rem !important;
+    }
+    
+    /* Footer */
+    footer {
+        padding: 20px 15px !important;
+        font-size: 0.85rem !important;
+    }
+}
+
+/* TABLET - 768px sampai 1023px */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .hero-text h1 {
+        font-size: 2.5rem !important;
+    }
+    
+    .hero-image {
+        max-width: 300px !important;
+    }
+    
+    .subjects-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 20px !important;
+    }
+    
+    .about-content {
+        flex-direction: row !important;
+        align-items: center !important;
+    }
+    
+    .about-text {
+        text-align: left !important;
+    }
+    
+    .about-text p {
+        text-align: left !important;
+    }
+}
+
+/* DESKTOP - 1024px ke atas */
+@media (min-width: 1024px) {
+    .hero-content {
+        flex-direction: row !important;
+        align-items: center !important;
+    }
+    
+    .hero-text {
+        text-align: left !important;
+    }
+    
+    .social-links {
+        justify-content: flex-start !important;
+    }
+    
+    .subjects-grid {
+        grid-template-columns: repeat(3, 1fr) !important;
+    }
+}
+
+/* Fix umum buat semua ukuran layar */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* Prevent horizontal scroll di semua device */
+body, html {
+    width: 100%;
+    overflow-x: hidden;
+}
+
+section {
+    width: 100%;
+    overflow-x: hidden;
+}
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo" onclick="window.location.href='index.html'">Porto<span>folio.</span></div>
+        <a href="it.html" class="back-btn">← Back to IT</a>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="page-icon">🎨</div>
+        <h1>Web Slicing Project</h1>
+        <p>Mereplikasi design Cartoon Network menjadi kode HTML/CSS</p>
+    </section>
+
+    <!-- Main Content -->
+    <section class="content-section">
+        
+        <!-- Info Box -->
+        <div class="info-box">
+            <h3>🎨 Tentang Web Slicing</h3>
+            <p>Web slicing adalah proses mengubah design visual (mockup/gambar) menjadi kode HTML dan CSS yang fungsional. Dalam project ini, saya belajar mereplikasi design dari website Cartoon Network, sebuah website dengan design yang colorful dan playful. Ini adalah latihan penting untuk memahami bagaimana menerjemahkan design menjadi kode yang pixel-perfect.</p>
+            <br>
+            <p><strong>Design Reference:</strong> Cartoon Network Official Website</p>
+            <p><strong>Tech Stack:</strong> HTML5, CSS3</p>
+            <p><strong>Difficulty:</strong> Hard</p>
+            <p><strong>Focus:</strong> Layout, Positioning, Styling</p>
+        </div>
+
+        <!-- Features Grid -->
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🎯</div>
+                <h3>Pixel Perfect</h3>
+                <p>Replikasi design dengan detail yang akurat</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🎨</div>
+                <h3>Color Matching</h3>
+                <p>Matching warna sesuai dengan design original</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📐</div>
+                <h3>Layout Structure</h3>
+                <p>Struktur layout yang rapi dan terorganisir</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">✨</div>
+                <h3>Clean Code</h3>
+                <p>Kode yang readable dan maintainable</p>
+            </div>
+        </div>
+
+        <!-- Website Container -->
+        <div class="website-container">
+            <div class="website-header">
+                <h2>🚀 Lihat Hasil Slicing</h2>
+                <p>Klik tombol di bawah untuk melihat hasil web slicing</p>
+            </div>
+            <div class="website-body">
+                <a href="https://akid1710.github.io/Slicing-Web-/" 
+                   target="_blank" 
+                   class="website-link">
+                    🌐 View Project
+                </a>
+            </div>
+        </div>
+
+        <!-- Process Section -->
+        <div class="process-section">
+            <h3>🔧 Proses Web Slicing</h3>
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h4>Analisis Design</h4>
+                        <p>Mempelajari design, mengidentifikasi sections, components, dan layout structure</p>
+                    </div>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h4>HTML Structure</h4>
+                        <p>Membuat struktur HTML semantic dengan tag-tag yang appropriate</p>
+                    </div>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h4>CSS Styling</h4>
+                        <p>Menerapkan styling untuk match dengan design - colors, fonts, spacing</p>
+                    </div>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h4>Layout Implementation</h4>
+                        <p>Mengimplementasikan layout menggunakan Flexbox/Grid</p>
+                    </div>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <h4>Refinement & Testing</h4>
+                        <p>Fine-tuning details dan testing di berbagai browser</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Learning Section -->
+        <div class="learning-section">
+            <h3>✨ Yang Saya Pelajari</h3>
+            <div class="learning-list">
+                <div class="learning-item">
+                    <div class="learning-item-icon">👀</div>
+                    <div class="learning-item-content">
+                        <h4>Design to Code Translation</h4>
+                        <p>Kemampuan membaca design visual dan menerjemahkannya menjadi kode HTML/CSS</p>
+                    </div>
+                </div>
+                <div class="learning-item">
+                    <div class="learning-item-icon">🎨</div>
+                    <div class="learning-item-content">
+                        <h4>CSS Positioning & Layout</h4>
+                        <p>Menguasai teknik positioning (absolute, relative, fixed) dan layout systems</p>
+                    </div>
+                </div>
+                <div class="learning-item">
+                    <div class="learning-item-icon">📏</div>
+                    <div class="learning-item-content">
+                        <h4>Attention to Detail</h4>
+                        <p>Melatih ketelitian dalam matching spacing, sizing, dan alignment</p>
+                    </div>
+                </div>
+                <div class="learning-item">
+                    <div class="learning-item-icon">🎯</div>
+                    <div class="learning-item-content">
+                        <h4>Color Theory & Typography</h4>
+                        <p>Memahami penggunaan warna dan typography dalam web design</p>
+                    </div>
+                </div>
+                <div class="learning-item">
+                    <div class="learning-item-icon">🔧</div>
+                    <div class="learning-item-content">
+                        <h4>Developer Tools</h4>
+                        <p>Menggunakan browser dev tools untuk inspect, debug, dan perfect the layout</p>
+                    </div>
+                </div>
+                <div class="learning-item">
+                    <div class="learning-item-icon">💪</div>
+                    <div class="learning-item-content">
+                        <h4>Problem Solving</h4>
+                        <p>Mengatasi challenges seperti browser compatibility dan layout inconsistencies</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Additional Info -->
+        <div class="info-box">
+            <h3>🎯 Challenges yang Dihadapi</h3>
+            <ul>
+                <li><strong>Complex Layout:</strong> Cartoon Network memiliki layout yang complex dengan banyak sections</li>
+                <li><strong>Color Matching:</strong> Mencocokkan warna-warna vibrant yang exact</li>
+                <li><strong>Spacing & Alignment:</strong> Menjaga consistency dalam spacing antar elements</li>
+                <li><strong>Font Selection:</strong> Menemukan font yang similar atau sama dengan design</li>
+                <li><strong>Image Handling:</strong> Managing dan optimizing images untuk web</li>
+            </ul>
+        </div>
+
+        <div class="info-box">
+            <h3>💡 Tips untuk Web Slicing</h3>
+            <ul>
+                <li>Mulai dengan struktur HTML yang semantic dan clean</li>
+                <li>Break down design menjadi components/sections kecil</li>
+                <li>Gunakan CSS variables untuk maintain consistency</li>
+                <li>Test frequently di browser selama development</li>
+                <li>Use browser dev tools untuk inspect dan adjust</li>
+                <li>Keep your code organized dengan comments dan proper indentation</li>
+                <li>Practice, practice, practice - semakin banyak slice, semakin cepat dan akurat</li>
+            </ul>
+        </div>
+
+        <div class="info-box">
+            <h3>🚀 Skills yang Dikembangkan</h3>
+            <ul>
+                <li>HTML semantic markup</li>
+                <li>Advanced CSS (Flexbox, Grid, Positioning)</li>
+                <li>Responsive design principles</li>
+                <li>Cross-browser compatibility</li>
+                <li>Design eye (kemampuan melihat detail visual)</li>
+                <li>Problem-solving dan debugging</li>
+            </ul>
+        </div>
+
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>Copyright by Akid1710 © 2025</p>
+    </footer>
+</body>
+</html>

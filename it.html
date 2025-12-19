@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Information Technology - Portfolio M. Dika Kurniawan</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #e3f2fd 0%, #ffffff 100%);
+            color: #1a1a1a;
+            line-height: 1.6;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px 80px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(0, 153, 255, 0.1);
+            box-shadow: 0 2px 20px rgba(0, 153, 255, 0.1);
+        }
+
+        .logo {
+            font-size: 1.5em;
+            font-weight: 700;
+            color: #1a1a1a;
+            cursor: pointer;
+        }
+
+        .logo span {
+            color: #00D9FF;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #0099FF 0%, #00D9FF 100%);
+            color: #ffffff;
+            padding: 12px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            transform: translateX(-5px);
+            box-shadow: 0 5px 20px rgba(0, 217, 255, 0.4);
+        }
+
+        .toggle-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 24px;
+            padding: 5px;
+            transition: transform 0.3s ease;
+        }
+
+        .toggle-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: #1a1a1a;
+            transition: all 0.3s ease;
+            border-radius: 3px;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(8px, -8px);
+        }
+
+        .page-header {
+            padding: 80px 80px 60px;
+            text-align: center;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: #ffffff;
+        }
+
+        .page-header h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+
+        .page-header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .page-icon {
+            font-size: 5em;
+            margin-bottom: 20px;
+        }
+
+        .content-section {
+            padding: 80px 80px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-intro {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-intro h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            font-weight: 700;
+            color: #1a1a1a;
+        }
+
+        .section-intro p {
+            color: #666;
+            font-size: 1.1em;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .works-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .work-card {
+            background: #ffffff;
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(0, 153, 255, 0.1);
+        }
+
+        .work-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(245, 87, 108, 0.25);
+        }
+
+        .work-image {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 4em;
+        }
+
+        .work-info {
+            padding: 30px;
+        }
+
+        .work-category {
+            color: #f5576c;
+            font-size: 0.9em;
+            font-weight: 600;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .work-title {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            font-weight: 700;
+            color: #1a1a1a;
+        }
+
+        .work-description {
+            color: #666;
+            font-size: 0.95em;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        .work-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .tag {
+            background: rgba(240, 147, 251, 0.15);
+            color: #f093fb;
+            padding: 5px 15px;
+            border-radius: 15px;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+
+        .work-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: #ffffff;
+            padding: 12px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.95em;
+            transition: all 0.3s ease;
+        }
+
+        .work-link:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 20px rgba(245, 87, 108, 0.4);
+        }
+
+        .stats-section {
+            background: #ffffff;
+            padding: 60px 80px;
+            margin: 80px 80px;
+            border-radius: 30px;
+            box-shadow: 0 10px 40px rgba(0, 153, 255, 0.1);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            text-align: center;
+        }
+
+        .stat-item {
+            padding: 20px;
+        }
+
+        .stat-number {
+            font-size: 3em;
+            font-weight: 800;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            color: #666;
+            font-weight: 600;
+        }
+
+        .skills-section {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            padding: 80px 80px;
+            margin: 80px 0;
+            color: #ffffff;
+        }
+
+        .skills-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .skills-content h2 {
+            font-size: 2.5em;
+            margin-bottom: 40px;
+            font-weight: 700;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .skill-item {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            padding: 30px 20px;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .skill-item:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-5px);
+        }
+
+        .skill-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+
+        .skill-name {
+            font-weight: 600;
+            font-size: 1.1em;
+        }
+
+        footer {
+            text-align: center;
+            padding: 60px 80px;
+            background: #0f0f0f;
+            color: #ffffff;
+        }
+
+        .copyright {
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #e3f2fd;
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.5s ease;
+        }
+
+        .spinner {
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            border-top: 4px solid #0099cc;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        body.dark-mode {
+            background: linear-gradient(135deg, #1a2a3a 0%, #2c3e50 100%);
+            color: #f0f0f0;
+        }
+
+        body.dark-mode .navbar {
+            background: rgba(44, 62, 80, 0.95);
+            border-bottom-color: #3f5872;
+        }
+
+        body.dark-mode .work-card {
+            background: #34495e;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            border: 1px solid #4a637a;
+        }
+
+        body.dark-mode footer {
+            background-color: #34495e;
+            border-top: 1px solid #4a637a;
+        }
+
+        body.dark-mode .tag {
+            background-color: #4a637a;
+            color: #f0f0f0;
+        }
+
+        body.dark-mode .hamburger span {
+            background: #f0f0f0;
+        }
+
+        body.dark-mode .stats-section {
+            background: #34495e;
+        }
+
+        body.dark-mode .section-intro h2,
+        body.dark-mode .work-title,
+        body.dark-mode .stat-label {
+            color: #f0f0f0;
+        }
+
+        @media (max-width: 968px) {
+            .navbar {
+                padding: 20px 30px;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-right {
+                position: fixed;
+                top: 70px;
+                right: -100%;
+                width: 70%;
+                height: calc(100vh - 70px);
+                background: rgba(255, 255, 255, 0.98);
+                backdrop-filter: blur(10px);
+                flex-direction: column;
+                padding: 40px 30px;
+                transition: right 0.3s ease;
+                box-shadow: -5px 0 20px rgba(0, 0, 0, 0.1);
+                align-items: flex-start;
+                gap: 30px;
+            }
+
+            body.dark-mode .nav-right {
+                background: rgba(44, 62, 80, 0.98);
+            }
+
+            .nav-right.active {
+                right: 0;
+            }
+
+            .back-btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .page-header {
+                padding: 60px 30px 40px;
+            }
+
+            .page-header h1 {
+                font-size: 2.5em;
+            }
+
+            .page-icon {
+                font-size: 3.5em;
+            }
+
+            .content-section {
+                padding: 60px 30px;
+            }
+
+            .section-intro h2 {
+                font-size: 2em;
+            }
+
+            .works-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .stats-section {
+                padding: 40px 30px;
+                margin: 60px 30px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .stat-number {
+                font-size: 2.5em;
+            }
+
+            .skills-section {
+                padding: 60px 30px;
+            }
+
+            .skills-content h2 {
+                font-size: 2em;
+            }
+
+            .skills-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+
+            footer {
+                padding: 40px 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-header h1 {
+                font-size: 2em;
+            }
+
+            .page-header p {
+                font-size: 1em;
+            }
+
+            .section-intro h2 {
+                font-size: 1.8em;
+            }
+
+            .work-title {
+                font-size: 1.3em;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        /* ============================================
+   TAMBAHKAN CSS INI KE FILE HTML KAMU
+   Di dalam tag <style> atau file CSS terpisah
+   ============================================ */
+
+/* Reset dasar biar ga overflow */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    overflow-x: hidden;
+    max-width: 100vw;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* MOBILE FIRST - Styling untuk HP */
+@media (max-width: 767px) {
+    /* Navigation */
+    nav {
+        padding: 10px 15px !important;
+    }
+    
+    nav .container {
+        flex-direction: column !important;
+        gap: 10px !important;
+    }
+    
+    nav ul {
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        gap: 8px !important;
+        width: 100% !important;
+    }
+    
+    nav ul li a {
+        padding: 6px 12px !important;
+        font-size: 0.85rem !important;
+    }
+    
+    /* Hero Section */
+    #home {
+        padding: 80px 15px 40px !important;
+        min-height: auto !important;
+    }
+    
+    .hero-content {
+        flex-direction: column !important;
+        gap: 20px !important;
+    }
+    
+    .hero-image {
+        width: 100% !important;
+        max-width: 250px !important;
+        margin: 0 auto !important;
+    }
+    
+    .hero-text {
+        text-align: center !important;
+        width: 100% !important;
+    }
+    
+    .hero-text h3 {
+        font-size: 0.9rem !important;
+    }
+    
+    .hero-text h1 {
+        font-size: 1.8rem !important;
+        line-height: 1.2 !important;
+    }
+    
+    .hero-text h2 {
+        font-size: 1rem !important;
+    }
+    
+    .social-links {
+        justify-content: center !important;
+        flex-wrap: wrap !important;
+        gap: 10px !important;
+    }
+    
+    .social-links a {
+        padding: 8px 15px !important;
+        font-size: 0.85rem !important;
+    }
+    
+    .cta-button {
+        padding: 10px 25px !important;
+        font-size: 0.9rem !important;
+    }
+    
+    /* About Section */
+    #about {
+        padding: 50px 15px !important;
+    }
+    
+    #about h2 {
+        font-size: 1.8rem !important;
+        margin-bottom: 30px !important;
+    }
+    
+    .about-content {
+        flex-direction: column !important;
+        gap: 20px !important;
+    }
+    
+    .about-image {
+        width: 100% !important;
+        max-width: 280px !important;
+        margin: 0 auto !important;
+    }
+    
+    .about-text {
+        text-align: center !important;
+    }
+    
+    .about-text h4 {
+        font-size: 1.2rem !important;
+    }
+    
+    .about-text p {
+        font-size: 0.95rem !important;
+        text-align: justify !important;
+        padding: 0 10px !important;
+    }
+    
+    /* Subjects Section */
+    #subjects {
+        padding: 50px 15px !important;
+    }
+    
+    #subjects h2 {
+        font-size: 1.8rem !important;
+        margin-bottom: 30px !important;
+    }
+    
+    .subjects-grid {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+    }
+    
+    .subject-card {
+        padding: 20px !important;
+    }
+    
+    .subject-icon {
+        font-size: 2.5rem !important;
+    }
+    
+    .subject-card h3 {
+        font-size: 1.3rem !important;
+    }
+    
+    .subject-card p {
+        font-size: 0.9rem !important;
+    }
+    
+    .subject-stats {
+        flex-wrap: wrap !important;
+        gap: 10px !important;
+    }
+    
+    .stat {
+        font-size: 0.85rem !important;
+    }
+    
+    .subject-link {
+        padding: 8px 16px !important;
+        font-size: 0.85rem !important;
+    }
+    
+    /* Contact Section */
+    #contact {
+        padding: 50px 15px !important;
+    }
+    
+    #contact h3 {
+        font-size: 1.5rem !important;
+    }
+    
+    #contact p {
+        font-size: 0.95rem !important;
+        padding: 0 15px !important;
+    }
+    
+    .contact-links {
+        flex-wrap: wrap !important;
+        gap: 10px !important;
+    }
+    
+    .contact-links a {
+        padding: 10px 20px !important;
+        font-size: 0.9rem !important;
+    }
+    
+    /* Footer */
+    footer {
+        padding: 20px 15px !important;
+        font-size: 0.85rem !important;
+    }
+}
+
+/* TABLET - 768px sampai 1023px */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .hero-text h1 {
+        font-size: 2.5rem !important;
+    }
+    
+    .hero-image {
+        max-width: 300px !important;
+    }
+    
+    .subjects-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 20px !important;
+    }
+    
+    .about-content {
+        flex-direction: row !important;
+        align-items: center !important;
+    }
+    
+    .about-text {
+        text-align: left !important;
+    }
+    
+    .about-text p {
+        text-align: left !important;
+    }
+}
+
+/* DESKTOP - 1024px ke atas */
+@media (min-width: 1024px) {
+    .hero-content {
+        flex-direction: row !important;
+        align-items: center !important;
+    }
+    
+    .hero-text {
+        text-align: left !important;
+    }
+    
+    .social-links {
+        justify-content: flex-start !important;
+    }
+    
+    .subjects-grid {
+        grid-template-columns: repeat(3, 1fr) !important;
+    }
+}
+
+/* Fix umum buat semua ukuran layar */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* Prevent horizontal scroll di semua device */
+body, html {
+    width: 100%;
+    overflow-x: hidden;
+}
+
+section {
+    width: 100%;
+    overflow-x: hidden;
+}
+    </style>
+</head>
+<body>
+    <div id="preloader">
+        <div class="spinner"></div>
+    </div>
+
+    <nav class="navbar">
+        <div class="logo" onclick="window.location.href='index.html'">Porto<span>folio.</span></div>
+
+        <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <div class="nav-right" id="navMenu">
+            <a href="index.html" class="back-btn">← Back to Home</a>
+            <button id="dark-mode-toggle" class="toggle-btn">🌙</button>
+        </div>
+    </nav>
+
+    <section class="page-header">
+        <div class="page-icon">💻</div>
+        <h1>Information Technology</h1>
+        <p>Dokumentasi pembelajaran IT meliputi web development, programming, design, dan berbagai project teknologi</p>
+    </section>
+
+    <div class="stats-section">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-number">5+</div>
+                <div class="stat-label">Projects Completed</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">6</div>
+                <div class="stat-label">Bulan Pembelajaran</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">5+</div>
+                <div class="stat-label">Skills Acquired</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">10+</div>
+                <div class="stat-label">Hours Coding</div>
+            </div>
+        </div>
+    </div>
+
+    <section class="content-section">
+        <div class="section-intro">
+            <h2>My IT Projects</h2>
+            <p>Berikut adalah koleksi project dan tugas IT yang telah saya kerjakan selama pembelajaran di SMAIT HSI Purworejo</p>
+        </div>
+
+        <div class="works-grid">
+            
+            <div class="work-card">
+                <div class="work-image">🌐</div>
+                <div class="work-info">
+                    <div class="work-category">Web Development</div>
+                    <h3 class="work-title">Website Pribadi</h3>
+                    <p class="work-description">Website personal yang menampilkan berbagai pencapaian dan pembelajaran selama di SMPIT Darul ILMI & SMAIT HSI Purworejo. Dibuat dengan HTML & CSS.</p>
+                    <div class="work-tags">
+                        <span class="tag">HTML</span>
+                        <span class="tag">CSS</span>
+                    </div>
+                    <a href="websitepribadi.html" class="work-link">
+                        View Project →
+                    </a>
+                </div>
+            </div>
+
+            <div class="work-card">
+                <div class="work-image">✍🏼</div>
+                <div class="work-info">
+                    <div class="work-category">Writing</div>
+                    <h3 class="work-title">Junior Writer</h3>
+                    <p class="work-description">(Project Mandiri) <br>Mencoba menulis sebuah cerita pendek tentang persahabatan dan kehangatan.</p>
+                    <div class="work-tags">
+                        <span class="tag">Writing</span>
+                        <span class="tag">Creativity</span>
+                        <span class="tag">Self Expression</span>
+                    </div>
+                    <a href="langitsenja.html" class="work-link" target="_blank">
+                        View Project →
+                    </a>
+                </div>
+            </div>
+
+            <div class="work-card">
+                <div class="work-image">🎨</div>
+                <div class="work-info">
+                    <div class="work-category">Design</div>
+                    <h3 class="work-title">Slicing Web</h3>
+                    <p class="work-description">Mempelajari proses slicing website dengan mereplikasi desain Cartoon Network...</p>
+                    <div class="work-tags">
+                        <span class="tag">Web Slicing</span>
+                        <span class="tag">HTML/CSS</span>
+                        <span class="tag">Design to Code</span>
+                    </div>
+                    <a href="slicingweb.html" class="work-link">
+                        View Project →
+                    </a>
+                </div>
+            </div>
+
+            <div class="work-card">
+                <div class="work-image">🐍</div>
+                <div class="work-info">
+                    <div class="work-category">Programming</div>
+                    <h3 class="work-title">World Countries Explorer</h3>
+                    <p class="work-description">Program Python interaktif untuk eksplorasi data negara-negara di dunia dengan fitur search, filter, quiz, dan statistik.</p>
+                    <div class="work-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">API</span>
+                        <span class="tag">Data</span>
+                    </div>
+                    <a href="python.html" class="work-link" target="_blank">
+                        Try It Now →
+                    </a>
+                </div>
+            </div>
+            
+            <div class="work-card">
+                <div class="work-image">💖</div>
+                <div class="work-info">
+                    <div class="work-category">Website Personal</div>
+                    <h3 class="work-title">Website Keluarga</h3>
+                    <p class="work-description">(Project Mandiri) <br>Website sederhana berisi ungkapan terima kasih, doa, dan harapan untuk anggota keluarga tercinta.</p>
+                    <div class="work-tags">
+                        <span class="tag">Family</span>
+                        <span class="tag">HTML</span>
+                        <span class="tag">CSS</span>
+                    </div>
+                    <a href="webkeluarga.html" class="work-link" target="_blank">
+                        Lihat Website →
+                    </a>
+                </div>
+            </div>
+
+            <div class="work-card">
+                <div class="work-image">🤝</div>
+                <div class="work-info">
+                    <div class="work-category">Website Personal</div>
+                    <h3 class="work-title">Website untuk Sahabat</h3>
+                    <p class="work-description">(Project Mandiri) <br> sederhana berisi ungkapan terima kasih yang sedalam-dalam nya untuk sahabat tercinta.</p>
+                    <div class="work-tags">
+                        <span class="tag">Friendship</span>
+                        <span class="tag">HTML</span>
+                        <span class="tag">CSS</span>
+                    </div>
+                    <a href="bestie.html" class="work-link" target="_blank">
+                        Lihat Website →
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="skills-section">
+        <div class="skills-content">
+            <h2>Skills & Technologies</h2>
+            <p style="opacity: 0.9; margin-bottom: 20px;">Tools dan teknologi yang telah dipelajari</p>
+            
+            <div class="skills-grid">
+                <div class="skill-item">
+                    <div class="skill-icon">🌐</div>
+                    <div class="skill-name">HTML & CSS</div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-icon">🎨</div>
+                    <div class="skill-name">Design</div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-icon">📱</div>
+                    <div class="skill-name">Responsive Web</div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-icon">📝</div>
+                    <div class="skill-name">Problem Solving</div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-icon">💡</div>
+                    <div class="skill-name">Logic Building</div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-icon">👨🏼‍💻</div>
+                    <div class="skill-name">Editing</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p class="copyright">Copyright by Akid1710 © 2025</p>
+    </footer>
+
+    <script>
+        window.addEventListener('load', function() {
+            const preloader = document.getElementById('preloader');
+            if (preloader) {
+                preloader.style.opacity = '0';
+                setTimeout(function() {
+                    preloader.style.display = 'none';
+                }, 500);
+            }
+        });
+
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('navMenu');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        const toggleButton = document.getElementById('dark-mode-toggle');
+        const body = document.body;
+        const localStorageKey = 'darkModeEnabled';
+
+        const isDarkMode = localStorage.getItem(localStorageKey) === 'true';
+        if (isDarkMode) {
+            body.classList.add('dark-mode');
+            toggleButton.textContent = '☀️';
+        } else {
+            toggleButton.textContent = '🌙';
+        }
+
+        toggleButton.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            const isCurrentlyDarkMode = body.classList.contains('dark-mode');
+            localStorage.setItem(localStorageKey, isCurrentlyDarkMode);
+
+            if (isCurrentlyDarkMode) {
+                toggleButton.textContent = '☀️';
+            } else {
+                toggleButton.textContent = '🌙';
+            }
+        });
+    </script>
+</body>
+</html>

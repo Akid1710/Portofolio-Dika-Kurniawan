@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Pribadi - Detail Project</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #e3f2fd 0%, #ffffff 100%);
+            color: #1a1a1a;
+            line-height: 1.6;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px 80px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 20px rgba(0, 153, 255, 0.1);
+        }
+
+        .logo {
+            font-size: 1.5em;
+            font-weight: 700;
+            color: #1a1a1a;
+            cursor: pointer;
+        }
+
+        .logo span {
+            color: #00D9FF;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #0099FF 0%, #00D9FF 100%);
+            color: #ffffff;
+            padding: 12px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            transform: translateX(-5px);
+            box-shadow: 0 5px 20px rgba(0, 217, 255, 0.4);
+        }
+
+        .page-header {
+            padding: 80px 80px 60px;
+            text-align: center;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: #ffffff;
+        }
+
+        .page-icon {
+            font-size: 5em;
+            margin-bottom: 20px;
+        }
+
+        .page-header h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+
+        .page-header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .content-section {
+            padding: 60px 80px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .website-container {
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 153, 255, 0.15);
+            overflow: hidden;
+            margin-bottom: 40px;
+        }
+
+        .website-header {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .website-header h2 {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .website-body {
+            padding: 40px;
+            text-align: center;
+        }
+
+        .website-link {
+            display: inline-block;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 20px 40px;
+            border-radius: 15px;
+            text-decoration: none;
+            font-size: 1.2em;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(240, 147, 251, 0.3);
+        }
+
+        .website-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(240, 147, 251, 0.4);
+        }
+
+        .info-box {
+            background: #fff5f8;
+            border-left: 4px solid #f093fb;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 10px;
+        }
+
+        .info-box h3 {
+            color: #f093fb;
+            margin-bottom: 10px;
+            font-size: 1.5em;
+        }
+
+        .info-box ul {
+            margin-left: 20px;
+            color: #666;
+        }
+
+        .info-box li {
+            margin-bottom: 8px;
+        }
+
+        .info-box p {
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 153, 255, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+
+        .feature-card h3 {
+            color: #1a1a1a;
+            margin-bottom: 10px;
+        }
+
+        .feature-card p {
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .tech-stack {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            padding: 60px 40px;
+            border-radius: 20px;
+            color: white;
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        .tech-stack h3 {
+            font-size: 2em;
+            margin-bottom: 30px;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .tech-item {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            padding: 25px;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .tech-item:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-5px);
+        }
+
+        .tech-icon {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .learning-section {
+            background: linear-gradient(135deg, rgba(240, 147, 251, 0.1) 0%, rgba(245, 87, 108, 0.1) 100%);
+            padding: 60px 40px;
+            border-radius: 20px;
+            margin: 40px 0;
+        }
+
+        .learning-section h3 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #f093fb;
+        }
+
+        .learning-list {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .learning-item {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: start;
+            gap: 15px;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .learning-item-icon {
+            font-size: 1.5em;
+            flex-shrink: 0;
+        }
+
+        .learning-item-content h4 {
+            margin-bottom: 5px;
+            font-size: 1.1em;
+            color: #1a1a1a;
+        }
+
+        .learning-item-content p {
+            color: #666;
+            font-size: 0.95em;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            background: #0f0f0f;
+            color: #666;
+        }
+
+        @media (max-width: 968px) {
+            .navbar {
+                padding: 20px 30px;
+            }
+
+            .page-header {
+                padding: 60px 30px 40px;
+            }
+
+            .page-header h1 {
+                font-size: 2.5em;
+            }
+
+            .content-section {
+                padding: 40px 30px;
+            }
+
+            .website-body {
+                padding: 20px;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .tech-stack {
+                padding: 40px 20px;
+            }
+
+            .tech-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .learning-section {
+                padding: 40px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo" onclick="window.location.href='index.html'">Porto<span>folio.</span></div>
+        <a href="it.html" class="back-btn">← Back to IT</a>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="page-icon">🌐</div>
+        <h1>Website Pribadi</h1>
+        <p>Personal website showcasing my journey and achievements</p>
+    </section>
+
+    <!-- Main Content -->
+    <section class="content-section">
+        
+        <!-- Info Box -->
+        <div class="info-box">
+            <h3>🌐 Tentang Project Ini</h3>
+            <p>Website pribadi ini adalah project pertama saya dalam web development. Dibuat dengan HTML dan CSS murni, website ini menampilkan perjalanan pembelajaran saya di SMPIT Darul ILMI dan SMAIT HSI Purworejo. Project ini menjadi fondasi penting dalam memahami dasar-dasar pembuatan website.</p>
+            <br>
+            <p><strong>Tech Stack:</strong> HTML5, CSS3</p>
+            <p><strong>Type:</strong> Static Website</p>
+            <p><strong>Status:</strong> Live & Deployed</p>
+            <p><strong>Hosting:</strong> Netlify</p>
+        </div>
+
+        <!-- Features Grid -->
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">📱</div>
+                <h3>Responsive Design</h3>
+                <p>Tampilan optimal di berbagai ukuran layar</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🎨</div>
+                <h3>Modern UI</h3>
+                <p>Design yang clean dan user-friendly</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3>Fast Loading</h3>
+                <p>Website ringan dengan performa optimal</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🎯</div>
+                <h3>Portfolio Showcase</h3>
+                <p>Menampilkan projects dan achievements</p>
+            </div>
+        </div>
+
+        <!-- Website Container -->
+        <div class="website-container">
+            <div class="website-header">
+                <h2>🚀 Visit My Website</h2>
+                <p>Klik tombol di bawah untuk mengunjungi website</p>
+            </div>
+            <div class="website-body">
+                <a href="https://akid1710.github.io/My-Website/" 
+                   target="_blank" 
+                   class="website-link">
+                    🌐 Open Website
+                </a>
+            </div>
+        </div>
+
+        <!-- Tech Stack -->
+        <div class="tech-stack">
+            <h3>💻 Technologies Used</h3>
+            <div class="tech-grid">
+                <div class="tech-item">
+                    <div class="tech-icon">🌐</div>
+                    <div>HTML5</div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon">🎨</div>
+                    <div>CSS3</div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon">📱</div>
+                    <div>Responsive</div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon">🚀</div>
+                    <div>Netlify</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Learning Section -->
+        <div class="learning-section">
+            <h3>✨ Yang Saya Pelajari</h3>
+            <div class="learning-list">
+                <div class="learning-item">
+                    <div class="learning-item-icon">📚</div>
+                    <div class="learning-item-content">
+                        <h4>HTML Fundamentals</h4>
+                        <p>Memahami struktur dasar HTML, semantic tags, dan best practices dalam menulis markup</p>
+                    </div>
+                </div>
+                <div class="learning-item">
+                    <div class="learning-item-icon">🎨</div>
+                    <div class="learning-item-content">
+                        <h4>CSS Styling</h4>
+                        <p>Belajar styling dengan CSS, flexbox, grid, animations, dan transitions untuk UI yang menarik</p>
+                    </div>
+                </div>
+                <div class="learning-item">
+                    <div class="learning-item-icon">📱</div>
+                    <div class="learning-item-content">
+                        <h4>Responsive Design</h4>
+                        <p>Mengimplementasikan media queries dan mobile-first approach untuk tampilan yang adaptif</p>
+                    </div>
+                </div>
+                <div class="learning-item">
+                    <div class="learning-item-icon">🎯</div>
+                    <div class="learning-item-content">
+                        <h4>UI/UX Principles</h4>
+                        <p>Memahami prinsip-prinsip design yang baik: hierarchy, spacing, contrast, dan consistency</p>
+                    </div>
+                </div>
+                <div class="learning-item">
+                    <div class="learning-item-icon">🚀</div>
+                    <div class="learning-item-content">
+                        <h4>Deployment</h4>
+                        <p>Belajar cara deploy website ke internet menggunakan Netlify dan manage DNS settings</p>
+                    </div>
+                </div>
+                <div class="learning-item">
+                    <div class="learning-item-icon">🔧</div>
+                    <div class="learning-item-content">
+                        <h4>Debugging & Problem Solving</h4>
+                        <p>Menghadapi dan menyelesaikan berbagai error, browser compatibility, dan layout issues</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Additional Info -->
+        <div class="info-box">
+            <h3>🌟 Fitur-Fitur Website</h3>
+            <ul>
+                <li><strong>Home Section:</strong> Hero section dengan welcome message dan call-to-action</li>
+                <li><strong>About Section:</strong> Informasi tentang latar belakang pendidikan dan minat</li>
+                <li><strong>Portfolio Section:</strong> Showcase projects dan achievements yang telah dicapai</li>
+                <li><strong>Skills Section:</strong> Daftar skills dan teknologi yang dikuasai</li>
+                <li><strong>Contact Section:</strong> Form kontak dan social media links</li>
+                <li><strong>Smooth Scrolling:</strong> Navigasi yang smooth antar section</li>
+                <li><strong>Hover Effects:</strong> Interactive elements dengan animasi hover</li>
+            </ul>
+        </div>
+
+        <div class="info-box">
+            <h3>💡 Challenges & Solutions</h3>
+            <ul>
+                <li><strong>Responsive Layout:</strong> Menggunakan flexbox dan media queries untuk layout yang adaptif</li>
+                <li><strong>Browser Compatibility:</strong> Testing di berbagai browser dan menambahkan vendor prefixes</li>
+                <li><strong>Performance:</strong> Optimasi gambar dan CSS untuk loading time yang cepat</li>
+                <li><strong>Design Consistency:</strong> Menggunakan CSS variables untuk maintain consistency</li>
+            </ul>
+        </div>
+
+        <div class="info-box">
+            <h3>🚀 Future Improvements</h3>
+            <ul>
+                <li>Menambahkan JavaScript untuk interaktivitas yang lebih complex</li>
+                <li>Implementasi dark mode toggle</li>
+                <li>Menambahkan blog section untuk sharing pengalaman</li>
+                <li>Integrasi dengan backend untuk contact form yang functional</li>
+                <li>Optimasi SEO dan accessibility</li>
+            </ul>
+        </div>
+
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>Copyright by Akid1710 © 2025</p>
+    </footer>
+</body>
+</html>

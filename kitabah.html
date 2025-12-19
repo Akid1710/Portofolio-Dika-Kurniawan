@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kitabah - Kesan & Pesan 6 Bulan</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #e3f2fd 0%, #ffffff 100%);
+            color: #1a1a1a;
+            line-height: 1.6;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px 80px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 20px rgba(0, 153, 255, 0.1);
+        }
+
+        .logo {
+            font-size: 1.5em;
+            font-weight: 700;
+            color: #1a1a1a;
+            cursor: pointer;
+        }
+
+        .logo span {
+            color: #00D9FF;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #0099FF 0%, #00D9FF 100%);
+            color: #ffffff;
+            padding: 12px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            transform: translateX(-5px);
+            box-shadow: 0 5px 20px rgba(0, 217, 255, 0.4);
+        }
+
+        .page-header {
+            padding: 80px 80px 60px;
+            text-align: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #ffffff;
+        }
+
+        .page-icon {
+            font-size: 5em;
+            margin-bottom: 20px;
+        }
+
+        .page-header h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+
+        .page-header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .content-section {
+            padding: 60px 80px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .document-container {
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 153, 255, 0.15);
+            overflow: hidden;
+            margin-bottom: 40px;
+        }
+
+        .document-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .document-header h2 {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .document-body {
+            padding: 40px;
+            text-align: center;
+        }
+
+        .document-link {
+            display: inline-block;
+            background: linear-gradient(135deg, #4285F4 0%, #34A853 100%);
+            color: white;
+            padding: 20px 40px;
+            border-radius: 15px;
+            text-decoration: none;
+            font-size: 1.2em;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(66, 133, 244, 0.3);
+        }
+
+        .document-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(66, 133, 244, 0.4);
+        }
+
+        .info-box {
+            background: #f0f7ff;
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 10px;
+        }
+
+        .info-box h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 1.5em;
+        }
+
+        .info-box ul {
+            margin-left: 20px;
+            color: #666;
+        }
+
+        .info-box li {
+            margin-bottom: 8px;
+        }
+
+        .info-box p {
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 153, 255, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+
+        .feature-card h3 {
+            color: #1a1a1a;
+            margin-bottom: 10px;
+        }
+
+        .feature-card p {
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .learning-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 60px 40px;
+            border-radius: 20px;
+            color: white;
+            margin: 40px 0;
+        }
+
+        .learning-section h3 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .learning-list {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .learning-item {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: start;
+            gap: 15px;
+        }
+
+        .learning-item-icon {
+            font-size: 1.5em;
+            flex-shrink: 0;
+        }
+
+        .learning-item-content h4 {
+            margin-bottom: 5px;
+            font-size: 1.1em;
+        }
+
+        .learning-item-content p {
+            opacity: 0.9;
+            font-size: 0.95em;
+        }
+
+        .quote-section {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            padding: 40px;
+            border-radius: 20px;
+            border-left: 4px solid #667eea;
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        .quote-text {
+            font-size: 1.5em;
+            font-style: italic;
+            color: #667eea;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .quote-author {
+            color: #666;
+            font-size: 1em;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            background: #0f0f0f;
+            color: #666;
+        }
+
+        @media (max-width: 968px) {
+            .navbar {
+                padding: 20px 30px;
+            }
+
+            .page-header {
+                padding: 60px 30px 40px;
+            }
+
+            .page-header h1 {
+                font-size: 2.5em;
+            }
+
+            .content-section {
+                padding: 40px 30px;
+            }
+
+            .document-body {
+                padding: 20px;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .learning-section {
+                padding: 40px 20px;
+            }
+
+            .quote-text {
+                font-size: 1.2em;
+            }
+        }
+        /* ============================================
+   TAMBAHKAN CSS INI KE FILE HTML KAMU
+   Di dalam tag <style> atau file CSS terpisah
+   ============================================ */
+
+/* Reset dasar biar ga overflow */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    overflow-x: hidden;
+    max-width: 100vw;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* MOBILE FIRST - Styling untuk HP */
+@media (max-width: 767px) {
+    /* Navigation */
+    nav {
+        padding: 10px 15px !important;
+    }
+    
+    nav .container {
+        flex-direction: column !important;
+        gap: 10px !important;
+    }
+    
+    nav ul {
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        gap: 8px !important;
+        width: 100% !important;
+    }
+    
+    nav ul li a {
+        padding: 6px 12px !important;
+        font-size: 0.85rem !important;
+    }
+    
+    /* Hero Section */
+    #home {
+        padding: 80px 15px 40px !important;
+        min-height: auto !important;
+    }
+    
+    .hero-content {
+        flex-direction: column !important;
+        gap: 20px !important;
+    }
+    
+    .hero-image {
+        width: 100% !important;
+        max-width: 250px !important;
+        margin: 0 auto !important;
+    }
+    
+    .hero-text {
+        text-align: center !important;
+        width: 100% !important;
+    }
+    
+    .hero-text h3 {
+        font-size: 0.9rem !important;
+    }
+    
+    .hero-text h1 {
+        font-size: 1.8rem !important;
+        line-height: 1.2 !important;
+    }
+    
+    .hero-text h2 {
+        font-size: 1rem !important;
+    }
+    
+    .social-links {
+        justify-content: center !important;
+        flex-wrap: wrap !important;
+        gap: 10px !important;
+    }
+    
+    .social-links a {
+        padding: 8px 15px !important;
+        font-size: 0.85rem !important;
+    }
+    
+    .cta-button {
+        padding: 10px 25px !important;
+        font-size: 0.9rem !important;
+    }
+    
+    /* About Section */
+    #about {
+        padding: 50px 15px !important;
+    }
+    
+    #about h2 {
+        font-size: 1.8rem !important;
+        margin-bottom: 30px !important;
+    }
+    
+    .about-content {
+        flex-direction: column !important;
+        gap: 20px !important;
+    }
+    
+    .about-image {
+        width: 100% !important;
+        max-width: 280px !important;
+        margin: 0 auto !important;
+    }
+    
+    .about-text {
+        text-align: center !important;
+    }
+    
+    .about-text h4 {
+        font-size: 1.2rem !important;
+    }
+    
+    .about-text p {
+        font-size: 0.95rem !important;
+        text-align: justify !important;
+        padding: 0 10px !important;
+    }
+    
+    /* Subjects Section */
+    #subjects {
+        padding: 50px 15px !important;
+    }
+    
+    #subjects h2 {
+        font-size: 1.8rem !important;
+        margin-bottom: 30px !important;
+    }
+    
+    .subjects-grid {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+    }
+    
+    .subject-card {
+        padding: 20px !important;
+    }
+    
+    .subject-icon {
+        font-size: 2.5rem !important;
+    }
+    
+    .subject-card h3 {
+        font-size: 1.3rem !important;
+    }
+    
+    .subject-card p {
+        font-size: 0.9rem !important;
+    }
+    
+    .subject-stats {
+        flex-wrap: wrap !important;
+        gap: 10px !important;
+    }
+    
+    .stat {
+        font-size: 0.85rem !important;
+    }
+    
+    .subject-link {
+        padding: 8px 16px !important;
+        font-size: 0.85rem !important;
+    }
+    
+    /* Contact Section */
+    #contact {
+        padding: 50px 15px !important;
+    }
+    
+    #contact h3 {
+        font-size: 1.5rem !important;
+    }
+    
+    #contact p {
+        font-size: 0.95rem !important;
+        padding: 0 15px !important;
+    }
+    
+    .contact-links {
+        flex-wrap: wrap !important;
+        gap: 10px !important;
+    }
+    
+    .contact-links a {
+        padding: 10px 20px !important;
+        font-size: 0.9rem !important;
+    }
+    
+    /* Footer */
+    footer {
+        padding: 20px 15px !important;
+        font-size: 0.85rem !important;
+    }
+}
+
+/* TABLET - 768px sampai 1023px */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .hero-text h1 {
+        font-size: 2.5rem !important;
+    }
+    
+    .hero-image {
+        max-width: 300px !important;
+    }
+    
+    .subjects-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 20px !important;
+    }
+    
+    .about-content {
+        flex-direction: row !important;
+        align-items: center !important;
+    }
+    
+    .about-text {
+        text-align: left !important;
+    }
+    
+    .about-text p {
+        text-align: left !important;
+    }
+}
+
+/* DESKTOP - 1024px ke atas */
+@media (min-width: 1024px) {
+    .hero-content {
+        flex-direction: row !important;
+        align-items: center !important;
+    }
+    
+    .hero-text {
+        text-align: left !important;
+    }
+    
+    .social-links {
+        justify-content: flex-start !important;
+    }
+    
+    .subjects-grid {
+        grid-template-columns: repeat(3, 1fr) !important;
+    }
+}
+
+/* Fix umum buat semua ukuran layar */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* Prevent horizontal scroll di semua device */
+body, html {
+    width: 100%;
+    overflow-x: hidden;
+}
+
+section {
+    width: 100%;
+    overflow-x: hidden;
+}
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo" onclick="window.location.href='index.html'">Porto<span>folio.</span></div>
+        <a href="arabic2.html" class="back-btn">← Back to Arabic</a>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="page-icon">📝</div>
+        <h1>Kitabah - Kesan & Pesan</h1>
+        <p>Ungkapan terima kasih dan refleksi pembelajaran 6 bulan dalam Bahasa Arab</p>
+    </section>
+
+    <!-- Main Content -->
+    <section class="content-section">
+        
+        <!-- Quote Section -->
+        <div class="quote-section">
+            <div class="quote-text">
+                "الحمد لله الذي علمنا ما لم نكن نعلم"
+            </div>
+            <div class="quote-author">
+                "Segala puji bagi Allah yang telah mengajarkan kami apa yang tidak kami ketahui"<br>
+                - Doa Syukur -
+            </div>
+        </div>
+
+        <!-- Info Box -->
+        <div class="info-box">
+            <h3>📖 Tentang Kitabah Ini</h3>
+            <p>Kitabah (كتابة) yang berarti "menulis" adalah salah satu dari empat keterampilan berbahasa Arab (Istima', Kalam, Qira'ah, Kitabah). Dalam tugas ini, saya menuangkan kesan dan pesan selama 6 bulan pembelajaran di SMAIT HSI Purworejo dalam bentuk karangan bebas berbahasa Arab. Ini adalah bentuk refleksi dan ungkapan syukur atas ilmu yang telah diperoleh.</p>
+            <br>
+            <p><strong>Jenis Tulisan:</strong> Karangan Bebas (إنشاء حر)</p>
+            <p><strong>Tema:</strong> Kesan, Pesan, Terima Kasih, dan Harapan</p>
+            <p><strong>Target:</strong> Guru, Teman, dan Keluarga</p>
+            <p><strong>Bahasa:</strong> Bahasa Arab</p>
+        </div>
+
+        <!-- Features Grid -->
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">✍️</div>
+                <h3>Personal Writing</h3>
+                <p>Tulisan personal dari hati tentang pengalaman belajar</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🙏</div>
+                <h3>Gratitude Expression</h3>
+                <p>Ungkapan terima kasih kepada semua pihak</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📚</div>
+                <h3>Reflection</h3>
+                <p>Refleksi mendalam tentang perjalanan belajar</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🌟</div>
+                <h3>Hope & Prayer</h3>
+                <p>Harapan dan doa untuk masa depan</p>
+            </div>
+        </div>
+
+        <!-- Document Container -->
+        <div class="document-container">
+            <div class="document-header">
+                <h2>📄 Baca Tulisan Lengkap</h2>
+                <p>Klik tombol di bawah untuk membaca kesan & pesan saya</p>
+            </div>
+            <div class="document-body">
+                <a href="https://bit.ly/4pof9uq" 
+                   target="_blank" 
+                   class="document-link">
+                    📖 Baca Tulisanku
+                </a>
+            </div>
+        </div>
+
+        <!-- Learning Section -->
+        <div class="learning-section">
+            <h3>✨ Yang Saya Pelajari</h3>
+            <div class="learning-list">
+                <div class="learning-item">
+                    <div class="learning-item-icon">✍️</div>
+                    <div class="learning-item-content">
+                        <h4>Kemampuan Menulis Arab</h4>
+                        <p>Meningkatkan kemampuan menulis dalam Bahasa Arab dengan struktur yang benar dan kosakata yang tepat</p>
+                    </div>
+                </div>
+                <div class="learning-item">
+                    <div class="learning-item-icon">🎨</div>
+                    <div class="learning-item-content">
+                        <h4>Ekspresi dalam Tulisan</h4>
+                        <p>Belajar mengekspresikan perasaan, pemikiran, dan refleksi melalui tulisan Arab</p>
+                    </div>
+                </div>
+                <div class="learning-item">
+                    <div class="learning-item-icon">📖</div>
+                    <div class="learning-item-content">
+                        <h4>Kosakata Emosional</h4>
+                        <p>Memperkaya vocabulary tentang perasaan: الشكر (terima kasih), الفرح (kebahagiaan), الأمل (harapan)</p>
+                    </div>
+                </div>
+                <div class="learning-item">
+                    <div class="learning-item-icon">🎯</div>
+                    <div class="learning-item-content">
+                        <h4>Struktur Karangan</h4>
+                        <p>Memahami struktur karangan Arab: pembukaan, isi, dan penutup yang koheren</p>
+                    </div>
+                </div>
+                <div class="learning-item">
+                    <div class="learning-item-icon">💭</div>
+                    <div class="learning-item-content">
+                        <h4>Self-Reflection</h4>
+                        <p>Melatih kemampuan refleksi diri dan mengevaluasi perjalanan pembelajaran</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Additional Info -->
+        <div class="info-box">
+            <h3>💡 Isi Tulisan</h3>
+            <ul>
+                <li><strong>Kesan Selama 6 Bulan:</strong> Pengalaman berharga selama belajar di SMAIT HSI Purworejo</li>
+                <li><strong>Terima Kasih kepada Guru:</strong> Ungkapan syukur untuk para ustadz dan ustadzah yang telah membimbing</li>
+                <li><strong>Terima Kasih kepada Teman:</strong> Apresiasi untuk teman-teman seperjuangan</li>
+                <li><strong>Terima Kasih kepada Orang Tua:</strong> Rasa terima kasih untuk dukungan keluarga</li>
+                <li><strong>Pembelajaran yang Didapat:</strong> Ilmu dan nilai-nilai yang telah dipelajari</li>
+                <li><strong>Harapan ke Depan:</strong> Harapan untuk terus berkembang dan bermanfaat</li>
+                <li><strong>Doa:</strong> Doa untuk semua pihak yang telah membantu perjalanan belajar</li>
+            </ul>
+        </div>
+
+        <div class="info-box">
+            <h3>📝 Tentang Kitabah (Menulis dalam Bahasa Arab)</h3>
+            <p>Kitabah adalah skill menulis dalam Bahasa Arab yang meliputi:</p>
+            <ul>
+                <li><strong>Imla' (إملاء):</strong> Kemampuan menulis ejaan Arab dengan benar</li>
+                <li><strong>Ta'bir (تعبير):</strong> Kemampuan menyusun kalimat dan paragraf</li>
+                <li><strong>Insya' (إنشاء):</strong> Kemampuan membuat karangan kreatif</li>
+                <li><strong>Kitabah Wadzifiyah:</strong> Menulis untuk keperluan praktis (surat, email, dll)</li>
+                <li><strong>Kitabah Ibda'iyah:</strong> Menulis kreatif (cerita, puisi, dll)</li>
+            </ul>
+        </div>
+
+        <div class="info-box">
+            <h3>🌟 Tips Meningkatkan Kemampuan Kitabah</h3>
+            <ul>
+                <li>Baca banyak teks Arab untuk menambah vocabulary dan struktur kalimat</li>
+                <li>Praktik menulis setiap hari, minimal satu paragraf</li>
+                <li>Mulai dari hal sederhana: jurnal harian, catatan kecil</li>
+                <li>Perhatikan penggunaan tanda baca (الترقيم) yang benar</li>
+                <li>Minta feedback dari guru atau native speaker</li>
+                <li>Pelajari berbagai jenis tulisan: deskriptif, naratif, argumentatif</li>
+                <li>Gunakan kamus Arab untuk menemukan kata yang tepat</li>
+                <li>Jangan takut membuat kesalahan - itu bagian dari proses belajar</li>
+            </ul>
+        </div>
+
+        <div class="info-box">
+            <h3>💝 Pesan untuk Pembaca</h3>
+            <ul>
+                <li>Belajar Bahasa Arab adalah investasi untuk akhirat</li>
+                <li>Setiap kesulitan pasti ada kemudahan (مع العسر يسرا)</li>
+                <li>Konsistensi lebih penting daripada intensitas</li>
+                <li>Niatkan untuk memahami Al-Qur'an dan Hadits</li>
+                <li>Jangan berhenti belajar, ilmu tidak ada batasnya</li>
+                <li>Berbagi ilmu kepada orang lain</li>
+            </ul>
+        </div>
+
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>Copyright by Akid1710 © 2025 | الحمد لله</p>
+    </footer>
+</body>
+</html>
